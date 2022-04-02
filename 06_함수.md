@@ -1,0 +1,131 @@
+06 | 함수
+====================
+### 기명 함수
+호출될 때 호이스팅이 발생. 선언하기 전, 후 모두 호출할 수 있음.
+```javascript
+test(1);
+
+function test(a: number) {
+    console.log(a);
+}
+
+test(2);
+```
+함수가 호출될 때 호이스팅 문제로 인해 함수 호출이 복잡해질 수 있음.
+이를 보완하고자 변수에 익명함수를 할당하는 것으로 해결할 수 있음.
+```javascript
+//resultSum(1,2) //Error
+let resultSum = function(num1: number, num2: number) {
+    return num1 + num2;
+}
+console.log(resultSum(1, 2));
+```
+### 기본 초기화 매개변수
+```javascript
+function pow(x: number, n: number = 2): number {
+    return x ** n;
+}
+console.log(pow(10));
+console.log(pow(10, 3));
+```
+기본 초기화 매개변수는 ES6에서 지원하는 특징. 컴파일 시 기본 초기화 매개변수가 유지됨.
+```javascript
+function pow(x, n = 2) {
+    return Math.pow(x, n);
+}
+console.log(pow(10));
+console.log(pow(10, 3));
+```
+### 나머지 매개변수
+개수가 정해지지 않은 인수를 배열로 받을 수 있는 기능
+순서가 크게 중요하지 않은 여러 요소를 전달하는 데 유용함.
+```javascript
+function concat(...restParam) {
+    return restParam.join("");
+}
+console.log(concat("a", 1, "B", 22)); //a1B22
+```
+일반 매개변수와나머지 매개변수를 동시에 선언하여 사용
+```javascript
+function concat2(a: number, ...restParam: string[]) {
+    return a+restParam.join("");
+}
+console.log(concat2(1, "a", "B")); //1aB
+```
+### 선택 매개변수
+선택 매개변수를 사용하지 않으면 선언한 매개변수의 개수만큼 인수를 전달해야 함.
+하지만, b를 초기화 하지 않았기 때문에 undefined검사를 해주지 않으면 NaN이 출력되어 별도로 검사가 필요함.
+```javascript
+function sum(a: number, b?: number): number {
+    if(b === undefined)
+        b = 0;
+    return a + b;
+}
+console.log(sum(1, 4));
+```
+### 함수 오버로드
+타입스크립트는 자바스크립트로 변환되고 나서도 동일한 형태를 유지해야 함.
+각 오버로드를 독립된 블럭으로 작성하면 안됨.
+가장 일반 적인 함수(매개변수를 any타입을 선언)를 가장 아래에 선언.
+그 위로 구체적인 타입을 명시한 함수를 쌓는 방식으로 선언해야 함.
+그러면 선언된 함수의 시그니처에 맞게 인수를 넘겨 호출할 수 있음.
+```javascript
+function add(a: string, b: string): string;
+function add(a: number, b: number): number;
+function add(a: any, b: any): any {
+    return a + b;
+};
+```
+다음과 같이 오버로드를 지정할 때 선택 매개변수를 둘 수 있음
+```javascript
+function add2(a: string, b: string): string;
+function add2(a: number, b: number): number;
+function add2(a: any, b?: any): any {
+    if(b === undefined) {
+        return a;
+    } else {
+        return a + b;
+    }
+};
+```
+### 화살표 함수
+자바에서의 람다 함수와 같음
+```javascript
+let addTest = (x: number, y: number) => {return x + y};
+console.log(addTest(1,2));
+```
+필터, 리듀스 메서드 등에 적용 가능함
+```javascript
+//filter
+let numberList = [1, 2, 3, 4, 5];
+numberList = numberList.filter(n => {
+    return n % 2 === 0;
+});
+console.log(numberList); //[ 2, 4 ]
+
+//reduce
+function getSum(nums: number[]): number{
+    let sum: number = nums.reduce((a, b) => {return a + b});
+    return sum;
+}
+let numSum = getSum([1, 2, 3, 4, 5]);
+console.log(numSum);
+```
+### 객체 리터럴
+여러 속성과 값을 한 단위로 묶어서 표현할 수 있는 객체
+```javascript
+let person = {
+    name: "fullth",
+    greeting: function(greet: string) {
+        console.log(greet + " " + this.name);
+    }
+}
+person.greeting("Hello");
+```
+### 익명 함수의 타입 선언
+익명 함수의 타입을 함수 타입으로 분리하면 새로 정의한 타입은 반복적으로 재활용 할 수 있음.
+```javascript
+type calcType = (a: number, b: number) => number;
+let addCalc: calcType = (a, b) => a + b;
+let minusCalc: calcType = (a, b) => a - b;
+```
