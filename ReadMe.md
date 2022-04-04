@@ -7,3 +7,5 @@ Leaning-Typescript
 [05 | 연산자](https://github.com/fullth/learning-typescript/blob/master/05_연산자.md)  
 [06 | 함수](https://github.com/fullth/learning-typescript/blob/master/06_함수.md)  
 [07 | 클래스와 인터페이스](https://github.com/fullth/learning-typescript/blob/master/07_클래스와인터페이스.md)  
+[08 | 모듈](https://github.com/fullth/learning-typescript/blob/master/08_모듈.md)  
+[09 | 고급 타입](https://github.com/fullth/learning-typescript/blob/master/09_고급타입.md)  
