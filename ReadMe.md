@@ -9,5 +9,6 @@ Leaning-Typescript
 [07 | 클래스와 인터페이스](https://github.com/fullth/learning-typescript/blob/master/07_클래스와인터페이스.md)  
 [08 | 모듈](https://github.com/fullth/learning-typescript/blob/master/08_모듈.md)  
 [09 | 고급 타입](https://github.com/fullth/learning-typescript/blob/master/09_고급타입.md)  
-[12 | 비동기 처리](https://github.com/fullth/learning-typescript/blob/master/12_비동기처리.md)
-[13 | 서드 파티 라이브러리와 타입 정의 파일](https://github.com/fullth/learning-typescript/blob/master/13_서드파티라이브러리와타입정의파일.md)
+[12 | 비동기 처리](https://github.com/fullth/learning-typescript/blob/master/12_비동기처리.md)  
+[13 | 서드 파티 라이브러리와 타입 정의 파일](https://github.com/fullth/learning-typescript/blob/master/13_서드파티라이브러리와타입정의파일.md)  
+[14 | 프로젝트 구성과 번들링](https://github.com/fullth/learning-typescript/blob/master/14_프로젝트구성과번들링.md)
